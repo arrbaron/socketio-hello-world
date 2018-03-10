@@ -1,18 +1,28 @@
-const app = require('express')();
-const http = require('http').Server(app);
-const io = require('socket.io')(http);
+const express = require('express');
+const socket = require('socket.io');
 
-app.get('/', (req, res) => {
-  res.sendFile(__dirname + '/index.html');
+const app = express();
+
+const server = app.listen(3000, () => {
+  console.log('listening on port 3000');
 });
+
+app.use(express.static('public'));
+
+const io = socket(server);
 
 io.on('connection', socket => {
-  console.log('a user connected');
-  socket.on('chat message', msg => {
-    io.emit('chat message', msg);
-  });
-});
+  socket.broadcast.emit('connected', socket.id);
 
-http.listen(3000, () => {
-  console.log('listening on port 3000');
+  socket.on('chat message', data => {
+    socket.broadcast.emit('chat message', data);
+  });
+
+  socket.on('typing', data => {
+    socket.broadcast.emit('typing', data);
+  });
+
+  socket.on('typing finish', () => {
+    socket.broadcast.emit('typing finish');
+  });
 });
