@@ -1,0 +1,14 @@
+{
+  "name": "socketio-hello-world",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Roy Baron <baron.roy@gmail.com> (https://github.com/soundofsilence75)",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.16.2"
+  }
+}
