@@ -9,6 +9,7 @@
   "author": "Roy Baron <baron.roy@gmail.com> (https://github.com/soundofsilence75)",
   "license": "ISC",
   "dependencies": {
-    "express": "^4.16.2"
+    "express": "^4.16.2",
+    "socket.io": "^2.0.4"
   }
 }
